@@ -303,11 +303,11 @@ def load(url):
 def unittest():
     parse('<doc>a<baz>f<b>o</b>ob<b>a</b>r</baz>a</doc>').__repr__(1, 1) == \
         '<doc>\n\ta<baz>\n\t\tf<b>o</b>ob<b>a</b>r\n\t</baz>a\n</doc>'
-    assert str(parse("<doc />")) == ""
-    assert str(parse("<doc>I <b>love</b> you.</doc>")) == "I love you."
+    assert str(parse("<doc />")) == six.b("")
+    assert str(parse("<doc>I <b>love</b> you.</doc>")) == six.b("I love you.")
     assert parse("<doc>\nmom\nwow\n</doc>")[0].strip() == "mom\nwow"
-    assert str(parse('<bing>  <bang> <bong>center</bong> </bang>  </bing>')) == "center"
-    assert str(parse('<doc>\xcf\x80</doc>')) == '\xcf\x80'
+    assert str(parse('<bing>  <bang> <bong>center</bong> </bang>  </bing>')) == six.b("center")
+    assert str(parse('<doc>\xcf\x80</doc>')) == six.b('\xcf\x80')
     d = Element('foo', attrs={'foo': 'bar'}, children=['hit with a', Element('bar'), Element('bar')])
     try:
         d._doesnotexist
