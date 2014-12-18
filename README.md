@@ -1,11 +1,8 @@
-tango-capo
+xmltramp2
 ====
 
-A django implementation of Capo: A very loose framework-y collection of css/javascript and template code I tend to always use.
+xmltramp was originally created by Aaron Swartz for simple-yet-powerful
+parsing of RSS and other xml files.
 
-Includes stickit.js, a jQuery plugin that:
-
-* allows for multiple sticky elements
-* allows them be combined with a sticky header
-* allows for expanding/collapsing header navigation
-* prevents overflow of the sticky element to the header or footer
+It has been substantially rewritten for subsequent python versions,
+including python3 compatibility.
