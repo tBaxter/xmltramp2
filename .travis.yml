@@ -6,5 +6,3 @@ install:
     - pip install -e .
 script:
     - python xmltramp.py
-install:
-  - "pip install six"
