@@ -15,4 +15,14 @@ setup(
     long_description=open('README.md').read(),
     include_package_data=True,
     zip_safe=False,
+    classifiers=(
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.4",
+        "Topic :: Text Processing :: Markup :: XML",
+    ),
 )
