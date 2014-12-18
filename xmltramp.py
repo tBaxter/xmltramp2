@@ -123,7 +123,7 @@ class Element:
     def __unicode__(self):
         text = ''
         for x in self._dir:
-            text += six.u(x)
+            text += unicode(x)
         return ' '.join(text.split())
 
     def __str__(self):
