@@ -14,9 +14,9 @@ setup(
     description='A modern refactoring of the venerable xmltramp application',
     long_description=open('README.md').read(),
     include_package_data=True,
-    install_requires=(
-        'six',
-    ),
+    install_requires=[
+          'six',
+    ],
     zip_safe=False,
     classifiers=(
         "Intended Audience :: Developers",
