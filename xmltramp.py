@@ -214,7 +214,8 @@ class Element:
 
     def __call__(self, *_pos, **_set):
         if _set:
-            for k in _set.keys(): self._attrs[k] = set[k]
+            for k in _set.keys():
+                self._attrs[k] = _set[k]
         if len(_pos) > 1:
             for i in range(0, len(_pos), 2):
                 self._attrs[_pos[i]] = _pos[i+1]
