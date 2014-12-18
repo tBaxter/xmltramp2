@@ -16,19 +16,21 @@ Usage is unchanged from older versions of xmltramp:
 Everyone's got their data in XML these days. You need to read it. You've looked at the other XML APIs and they all contain miles of crud that's only necessary when parsing the most arcane documents. Wouldn't it be nice to have an easy-to-use API for the normal XML documents you deal with? That's xmltramp:
 
 ```
+>>> sample_xml = """<doc version="2.7182818284590451"
+  xmlns="http://example.org/bar"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:bbc="http://example.org/bbc">
+  <author><name>John Polk</name> and <name>John Palfrey</name></author>
+  <dc:creator>John Polk</dc:creator>
+  <dc:creator>John Palfrey</dc:creator>
+  <bbc:show bbc:station="4">Buffy</bbc:show>
+</doc>"""
+
 >>> import xmltramp
 >>> doc = xmltramp.Namespace("http://example.org/bar")
 >>> bbc = xmltramp.Namespace("http://example.org/bbc")
 >>> dc = xmltramp.Namespace("http://purl.org/dc/elements/1.1/")
->>> d = xmltramp.parse("""<doc version="2.7182818284590451"
-  xmlns="http://example.org/bar"
-  xmlns:dc="http://purl.org/dc/elements/1.1/"
-  xmlns:bbc="http://example.org/bbc">
-	<author><name>John Polk</name> and <name>John Palfrey</name></author>
-	<dc:creator>John Polk</dc:creator>
-	<dc:creator>John Palfrey</dc:creator>
-	<bbc:show bbc:station="4">Buffy</bbc:show>
-</doc>""")
+>>> d = xmltramp.parse(sample_xml)
 >>> d
 <doc version="2.7182818284590451">...</doc>
 >>> d('version')
