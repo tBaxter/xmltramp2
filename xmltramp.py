@@ -14,6 +14,7 @@ The prior credits will be be maintained. Thank you, Aaron Swartz, for all you di
 """
 
 import six
+import sys
 
 def isstr(f):
     return isinstance(f, type('')) or isinstance(f, type(u''))
