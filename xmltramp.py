@@ -340,8 +340,11 @@ def unittest():
     assert d[0] == 'ice cream'
     del d[0]
     assert d[0]._name == "bar"
-    assert len(d[:]) == len(d._dir)
+
+    assert len(d) == len(d._dir)
+
     assert len(d[1:]) == len(d._dir) - 1
+
     assert len(d['bar':]) == 2
     d['bar':] = 'baz'
     assert len(d['bar':]) == 3

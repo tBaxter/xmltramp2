@@ -5,7 +5,7 @@ from setuptools import find_packages
 
 setup(
     name='xmltramp2',
-    version='3.0.1',
+    version='3.0.2',
     author=u'Tim Baxter',
     author_email='mail.baxter@gmail.com',
     packages=find_packages(),
