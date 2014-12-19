@@ -10,7 +10,7 @@ parsing of RSS and other xml files.
 xmltramp2 has been substantially rewritten for subsequent python versions,
 including python3 compatibility.
 
-The prior credits will be be maintained. Thank you, Aaron Swartz, for all you did.
+The original credits will be be maintained above. Thank you, Aaron Swartz, for all you did.
 """
 
 import six
