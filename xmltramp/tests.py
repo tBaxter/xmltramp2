@@ -1,5 +1,5 @@
-from xmltramp.xmltramp import Element, Namespace
-from xmltramp.xmltramp import parse, quote
+from xmltramp import Element, Namespace
+from xmltramp import parse, quote
 
 def unittest():
     parse('<doc>a<baz>f<b>o</b>ob<b>a</b>r</baz>a</doc>').__repr__(1, 1) == \
