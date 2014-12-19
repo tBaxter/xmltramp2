@@ -127,7 +127,11 @@ class Element:
         return ' '.join(text.split())
 
     def __str__(self):
-        return self.__unicode__().encode('utf-8')
+        u = self.__unicode__()
+        if sys.version_info[0] >= 3:
+            return u
+        else:
+            return u.encode('utf-8')
 
     def __getattr__(self, n):
         if n[0] == '_':
