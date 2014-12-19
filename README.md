@@ -13,9 +13,6 @@ Usage is unchanged from older versions of xmltramp, other than you now import fr
 `from xmltramp2 import xmltramp`
 
 
-With many thanks to Aaron Swartz.
-
-
 ## Usage
 
 Everyone's got their data in XML these days. You need to read it. You've looked at the other XML APIs and they all contain miles of crud that's only necessary when parsing the most arcane documents. Wouldn't it be nice to have an easy-to-use API for the normal XML documents you deal with? That's xmltramp:
@@ -67,3 +64,10 @@ Everyone's got their data in XML these days. You need to read it. You've looked 
 '5'
 
 ```
+
+## Credits
+
+Most thanks go to Aaron Swartz, both for writing this in the first place, and just in general, for all he did.
+
+Additional thanks to Kristian Glass, for helping get this over the Python3 hump, and for tests.
+
