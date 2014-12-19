@@ -259,7 +259,8 @@ class Seeder(EntityResolver, DTDHandler, ContentHandler, ErrorHandler):
         ContentHandler.__init__(self)
 
     def startPrefixMapping(self, prefix, uri):
-        if not self.prefixes.has_key(prefix): self.prefixes[prefix] = []
+        if prefix not in self.prefixes:
+            self.prefixes[prefix] = []
         self.prefixes[prefix].append(uri)
 
     def endPrefixMapping(self, prefix):
