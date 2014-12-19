@@ -1,15 +1,20 @@
-xmltramp2
-====
+# xmltramp2
 
 [xmltramp](http://www.aaronsw.com/2002/xmltramp/) was originally created by Aaron Swartz
 for simple-yet-powerful parsing of RSS and other xml files.
 
-It a simple, fast and lightweight alternative to parsers such as BeautifulSoup or ElementTree. It won't do all they do, but what it does do it does simply and easily.
+It is a simple, fast, lightweight alternative to more heavyweight parsers such as BeautifulSoup or ElementTree. It won't do all they do, but what it does do it does simply and easily.
 
 It has been substantially rewritten for subsequent python versions,
-including python3 compatibility.
+including Python3 compatibility. Tests are included.
 
-Usage is unchanged from older versions of xmltramp:
+Usage is unchanged from older versions of xmltramp, other than you now import from a package:
+
+`from xmltramp2 import xmltramp`
+
+
+With many thanks to Aaron Swartz.
+
 
 ## Usage
 

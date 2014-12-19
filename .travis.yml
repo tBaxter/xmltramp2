@@ -5,4 +5,4 @@ python:
 install:
     - pip install -e .
 script:
-    - python xmltramp/tests.py
+    - python xmltramp2/tests.py
