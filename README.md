@@ -8,10 +8,16 @@ It is a simple, fast, lightweight alternative to more heavyweight parsers such a
 It has been substantially rewritten for subsequent python versions,
 including Python3 compatibility. Tests are included.
 
+## Installation
+
+The easiest way is via pip:
+
+`pip install xmltramp2`
+
+
 Usage is unchanged from older versions of xmltramp, other than you now import from a package:
 
 `from xmltramp2 import xmltramp`
-
 
 ## Usage
 
