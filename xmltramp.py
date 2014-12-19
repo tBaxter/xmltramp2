@@ -124,7 +124,11 @@ class Element:
     def __unicode__(self):
         text = ''
         for x in self._dir:
-            text += unicode(x)
+            if sys.version_info[0] >= 3:
+                u = str(x)
+            else:
+                u = unicode(x)
+            text += u
         return ' '.join(text.split())
 
     def __str__(self):
