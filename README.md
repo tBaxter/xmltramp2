@@ -1,5 +1,7 @@
 # xmltramp2
 
+[![Build Status](https://travis-ci.org/tBaxter/xmltramp2.svg?branch=master)](https://travis-ci.org/tBaxter/xmltramp2)
+
 [xmltramp](http://www.aaronsw.com/2002/xmltramp/) was originally created by Aaron Swartz
 for simple-yet-powerful parsing of RSS and other xml files.
 
