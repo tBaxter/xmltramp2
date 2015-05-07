@@ -302,16 +302,9 @@ def seed(fileobj):
 
 
 def parse(text):
-    if sys.version_info[0] >= 3:
-        u = str(text)
-    else:
-        u = unicode(text)
-    return seed(u)
+    return seed(six.StringIO(text))
 
 
 def load(url):
-    try:
-        from urllib import urlopen
-    except:
-        from urllib.request import urlopen # py3
-    return seed(urlopen(url))
+    import urllib
+    return seed(urllib.urlopen(url))
