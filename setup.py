@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='xmltramp2',
-    version='3.1',
+    version='3.1.1',
     author=u'Tim Baxter',
     author_email='mail.baxter@gmail.com',
     description='A modern refactoring of the venerable xmltramp application',
