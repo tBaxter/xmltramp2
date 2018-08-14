@@ -287,8 +287,8 @@ def seed(fileobj):
 
 
 def parse(text):
-    if isinstance(text, str):
-        return seed(StringIO(text))
+    #if isinstance(text, str):
+    return seed(StringIO(text))
     # file.read() results in bytes, so....
     return seed(BytesIO(text))
 
