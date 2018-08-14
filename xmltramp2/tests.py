@@ -53,18 +53,16 @@ class TestXmlTramp(unittest.TestCase):
 
         assert len(d) == len(d._dir)
         assert len(d[1:]) == len(d._dir) - 1
-        assert len(d['bar']) == 2
-        d['bar'] = 'baz'
-        assert len(d['bar']) == 3
-        assert d['bar']._name == 'bar'
+        assert len(d.bar) == 2
+        d.bar = 'baz'
+        assert len(d.bar) == 3
+        assert d.bar._name == 'bar'
 
         #        d = Element('foo')
-    def test_namespaces(self):
+    def test_namespaces_repr(self):
         doc = Namespace("http://example.org/bar")
         bbc = Namespace("http://example.org/bbc")
         dc = Namespace("http://purl.org/dc/elements/1.1/")
-    
-    def test_repr(self):
         d = parse("""<doc version="2.7182818284590451"
         xmlns="http://example.org/bar"
         xmlns:dc="http://purl.org/dc/elements/1.1/"
