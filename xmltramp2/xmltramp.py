@@ -13,10 +13,8 @@ including python3 compatibility.
 The original credits will be be maintained above. Thank you, Aaron Swartz, for all you did.
 """
 
+import six
 import sys
-
-from io import BytesIO, StringIO
-from urllib.request import urlopen
 
 def isstr(f):
     return isinstance(f, type('')) or isinstance(f, type(u''))
@@ -79,9 +77,9 @@ class Element:
                     if addns:
                         out += ' xmlns'
                     if addns and self._prefixes[p]:
-                        out += ':' + self._prefixes[p]
+                        out += ':'+self._prefixes[p]
                     if addns:
-                        out += '="' + quote(p, False) + '"'
+                        out += '="'+quote(p, False)+'"'
                     inprefixes[p] = self._prefixes[p]
             for k in a.keys():
                 out += ' ' + qname(k, inprefixes) + '="' + quote(a[k], False) + '"'
@@ -111,7 +109,7 @@ class Element:
                 if isstr(x):
                     out += quote(x)
                 elif isinstance(x, Element):
-                    out += x.__repr__(recursive + 1, multiline, inprefixes.copy())
+                    out += x.__repr__(recursive+1, multiline, inprefixes.copy())
                 else:
                     raise TypeError("I wasn't expecting {}.".format(x))
             if multiline and content:
@@ -120,8 +118,25 @@ class Element:
             if self._dir:
                 out += '...'
 
-        out += '</' + qname(self._name, inprefixes) + '>'
+        out += '</'+qname(self._name, inprefixes)+'>'
         return out
+
+    def __unicode__(self):
+        text = ''
+        for x in self._dir:
+            if sys.version_info[0] >= 3:
+                u = str(x)
+            else:
+                u = unicode(x)
+            text += u
+        return ' '.join(text.split())
+
+    def __str__(self):
+        u = self.__unicode__()
+        if sys.version_info[0] >= 3:
+            return u
+        else:
+            return u.encode('utf-8')
 
     def __getattr__(self, n):
         if n[0] == '_':
@@ -287,11 +302,9 @@ def seed(fileobj):
 
 
 def parse(text):
-    #if isinstance(text, str):
-    return seed(StringIO(text))
-    # file.read() results in bytes, so....
-    return seed(BytesIO(text))
+    return seed(six.StringIO(text))
 
 
 def load(url):
-    return seed(urlopen(url))
+    import urllib
+    return seed(urllib.urlopen(url))
