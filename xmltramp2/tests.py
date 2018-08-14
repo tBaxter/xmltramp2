@@ -109,7 +109,7 @@ class TestXmlTramp(unittest.TestCase):
         assert parse('<x a="&lt;"></x>').__repr__(1) == '<x a="&lt;"></x>'
         assert parse('<a xmlns="http://a"><b xmlns="http://b"/></a>').__repr__(1) == '<a xmlns="http://a"><b xmlns="http://b"></b></a>'
 
-        # Testing with a vimeo URL:
+    def test_external_xml(self):
         api_url = 'http://vimeo.com/api/v2/video/67325705.xml'
         video_data = urlopen(api_url).read()
         parse(video_data)
