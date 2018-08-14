@@ -7,9 +7,18 @@ from xmltramp import parse, quote
 
 
 class TestXmlTramp(unittest.TestCase):
+
+    def setUp(self):
+        self.testElem = Element(
+            'foo', 
+            attrs={'foo': 'bar'}, 
+            children=['hit with a', Element('bar'), Element('bar')]
+        )
+
     def test_sample_xml(self):
         parse('<doc>a<baz>f<b>o</b>ob<b>a</b>r</baz>a</doc>').__repr__(1, 1) == \
             '<doc>\n\ta<baz>\n\t\tf<b>o</b>ob<b>a</b>r\n\t</baz>a\n</doc>'
+    
     def test_empty_xml(self):
         assert str(parse("<doc />")) == ""
     
@@ -25,15 +34,17 @@ class TestXmlTramp(unittest.TestCase):
     def test_escaped_chars(self):
         assert str(parse('<doc>\xcf\x80</doc>')) == '\xcf\x80'
     
-    def test_created_element(self):
-        d = Element(
-            'foo', 
-            attrs={'foo': 'bar'}, 
-            children=['hit with a', Element('bar'), Element('bar')]
-        )
-        if d._doesnotexist or d.doesnotexist:
+    def test_bogus_attributes(self):
+        d = self.testElem
+        try:
+            d.some_bogus_attribute
+            d._another_bogus_attribute
             raise Exception("Expected Error but found success. Damn.")
-        
+        except AttributeError:
+            pass
+
+    def test_attributes(self):
+        d = self.testElem
         #assert hasattr(d, 'bar') == True
         # Now check for bar attribute in d, and the name of it.
         self.assertTrue(hasattr(d, 'bar'))
