@@ -32,7 +32,7 @@ class TestXmlTramp(unittest.TestCase):
             raise Exception("Expected Error but found success. Damn.")
         except AttributeError:
             pass
-        assert d.bar._name == 'bar'
+        assert d['bar']._name == 'bar'
         try:
             d.doesnotexist
             raise Exception("Expected Error but found success. Damn.")
@@ -54,7 +54,7 @@ class TestXmlTramp(unittest.TestCase):
         assert len(d) == len(d._dir)
         assert len(d[1:]) == len(d._dir) - 1
         
-        self.assertEqual(len(d.bar), 2)
+        self.assertEqual(len(d['bar']), 2)
         d.bar = 'baz'
         assert len(d.bar) == 3
         assert d.bar._name == 'bar'
