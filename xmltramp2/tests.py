@@ -92,7 +92,8 @@ class TestXmlTramp(unittest.TestCase):
         #assert d.__repr__(1, 1) == '<doc xmlns:bbc="http://example.org/bbc" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://example.org/bar" version="2.7182818284590451">\n\t<author>John Polk and John Palfrey</author>\n\t<dc:creator>John Polk</dc:creator>\n\t<dc:creator>John Palfrey</dc:creator>\n\t<bbc:show bbc:station="4">Buffy</bbc:show>\n</doc>'
         assert repr(parse("<doc xml:lang='en' />")) == '<doc xml:lang="en"></doc>'
         self.assertEqual(d.author, d['author'])
-        self.assertEqual(d.author, "John Polk and John Palfrey")
+        text = d['author']
+        self.assertEqual(text, "John Polk and John Palfrey")
         assert d.author._name == doc.author
         assert str(d[dc.creator]) == "John Polk"
         assert d[dc.creator]._name == dc.creator
