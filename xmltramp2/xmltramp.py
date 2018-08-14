@@ -15,7 +15,7 @@ The original credits will be be maintained above. Thank you, Aaron Swartz, for a
 
 import sys
 
-from io import StringIO
+from io import BytesIO, StringIO
 from urllib.request import urlopen
 
 def isstr(f):
@@ -79,9 +79,9 @@ class Element:
                     if addns:
                         out += ' xmlns'
                     if addns and self._prefixes[p]:
-                        out += ':'+self._prefixes[p]
+                        out += ':' + self._prefixes[p]
                     if addns:
-                        out += '="'+quote(p, False)+'"'
+                        out += '="' + quote(p, False) + '"'
                     inprefixes[p] = self._prefixes[p]
             for k in a.keys():
                 out += ' ' + qname(k, inprefixes) + '="' + quote(a[k], False) + '"'
@@ -111,7 +111,7 @@ class Element:
                 if isstr(x):
                     out += quote(x)
                 elif isinstance(x, Element):
-                    out += x.__repr__(recursive+1, multiline, inprefixes.copy())
+                    out += x.__repr__(recursive + 1, multiline, inprefixes.copy())
                 else:
                     raise TypeError("I wasn't expecting {}.".format(x))
             if multiline and content:
@@ -120,7 +120,7 @@ class Element:
             if self._dir:
                 out += '...'
 
-        out += '</'+qname(self._name, inprefixes)+'>'
+        out += '</' + qname(self._name, inprefixes) + '>'
         return out
 
     def __getattr__(self, n):
@@ -287,8 +287,10 @@ def seed(fileobj):
 
 
 def parse(text):
-    # We force to text because file.read() results in bytes
-    return seed(StringIO(str(text)))
+    if isinstance(text, str):
+        return seed(StringIO(text))
+    # file.read() results in bytes, so....
+    return seed(BytesIO(text))
 
 
 def load(url):
