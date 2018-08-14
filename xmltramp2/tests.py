@@ -20,10 +20,10 @@ class TestXmlTramp(unittest.TestCase):
             '<doc>\n\ta<baz>\n\t\tf<b>o</b>ob<b>a</b>r\n\t</baz>a\n</doc>'
     
     def test_empty_xml(self):
-        assert str(parse("<doc />")) == ""
+        self.assertEqual(parse("<doc />"), "")
     
     def test_html(self):
-        assert str(parse("<doc>I <b>love</b> you.</doc>")) == "I love you."
+        self.assertEqual(parse("<doc>I <b>love</b> you.</doc>"), "I love you.")
     
     def test_line_breaks(self):
         assert parse("<doc>\nmom\nwow\n</doc>")[0].strip() == "mom\nwow"
@@ -32,7 +32,7 @@ class TestXmlTramp(unittest.TestCase):
         assert str(parse('<bing>  <bang> <bong>center</bong> </bang>  </bing>')) == "center"
         
     def test_escaped_chars(self):
-        assert str(parse('<doc>\xcf\x80</doc>')) == '\xcf\x80'
+        self.assertEqual(parse('<doc>\xcf\x80</doc>'), '\xcf\x80')
     
     def test_bogus_attributes(self):
         d = self.testElem
@@ -91,7 +91,8 @@ class TestXmlTramp(unittest.TestCase):
         #assert d.__repr__(1) == '<doc xmlns:bbc="http://example.org/bbc" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://example.org/bar" version="2.7182818284590451"><author>John Polk and John Palfrey</author><dc:creator>John Polk</dc:creator><dc:creator>John Palfrey</dc:creator><bbc:show bbc:station="4">Buffy</bbc:show></doc>'
         #assert d.__repr__(1, 1) == '<doc xmlns:bbc="http://example.org/bbc" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://example.org/bar" version="2.7182818284590451">\n\t<author>John Polk and John Palfrey</author>\n\t<dc:creator>John Polk</dc:creator>\n\t<dc:creator>John Palfrey</dc:creator>\n\t<bbc:show bbc:station="4">Buffy</bbc:show>\n</doc>'
         assert repr(parse("<doc xml:lang='en' />")) == '<doc xml:lang="en"></doc>'
-        assert str(d.author) == str(d['author']) == "John Polk and John Palfrey"
+        self.assertEqual(d.author, d['author'])
+        self.assertEqual(d.author, "John Polk and John Palfrey")
         assert d.author._name == doc.author
         assert str(d[dc.creator]) == "John Polk"
         assert d[dc.creator]._name == dc.creator
