@@ -15,7 +15,7 @@ The original credits will be be maintained above. Thank you, Aaron Swartz, for a
 
 import sys
 
-from io import BytesIO
+from io import StringIO
 from urllib.request import urlopen
 
 def isstr(f):
@@ -287,7 +287,8 @@ def seed(fileobj):
 
 
 def parse(text):
-    return seed(BytesIO(text))
+    # We force to text because file.read() results in bytes
+    return seed(StringIO(str(text)))
 
 
 def load(url):
