@@ -13,8 +13,10 @@ including python3 compatibility.
 The original credits will be be maintained above. Thank you, Aaron Swartz, for all you did.
 """
 
-import six
 import sys
+
+from io import BytesIO
+from urllib.request import urlopen
 
 def isstr(f):
     return isinstance(f, type('')) or isinstance(f, type(u''))
@@ -120,23 +122,6 @@ class Element:
 
         out += '</'+qname(self._name, inprefixes)+'>'
         return out
-
-    def __unicode__(self):
-        text = ''
-        for x in self._dir:
-            if sys.version_info[0] >= 3:
-                u = str(x)
-            else:
-                u = unicode(x)
-            text += u
-        return ' '.join(text.split())
-
-    def __str__(self):
-        u = self.__unicode__()
-        if sys.version_info[0] >= 3:
-            return u
-        else:
-            return u.encode('utf-8')
 
     def __getattr__(self, n):
         if n[0] == '_':
@@ -302,9 +287,8 @@ def seed(fileobj):
 
 
 def parse(text):
-    return seed(six.StringIO(text))
+    return seed(BytesIO(text))
 
 
 def load(url):
-    import urllib
-    return seed(urllib.urlopen(url))
+    return seed(urlopen(url))
