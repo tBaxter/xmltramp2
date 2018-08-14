@@ -115,5 +115,3 @@ class TestXmlTramp(unittest.TestCase):
         video_data = urlopen(api_url).read()
         parse(video_data)
         assert repr(video_data) == "foo" 
-
-if __name__ == '__main__': unittest()
