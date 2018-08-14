@@ -39,7 +39,7 @@ class TestXmlTramp(unittest.TestCase):
         try:
             d.some_bogus_attribute
             d._another_bogus_attribute
-            raise Exception("Expected Error but found success. Damn.")
+            raise Exception("Expected error but found success. Damn.")
         except AttributeError:
             pass
 
@@ -49,9 +49,11 @@ class TestXmlTramp(unittest.TestCase):
         # Now check for bar attribute in d, and the name of it.
         self.assertTrue(hasattr(d, 'bar'))
         self.assertEqual(d.bar._name, 'bar')
-        #assert d['bar']._name == 'bar'
+        self.assertEqual(d('foo'), 'bar')
 
-        assert d('foo') == 'bar'
+    def test_setting_attributes(self):
+        d = self.testElem
+
         d(silly='yes')
         assert d('silly') == 'yes'
         assert d() == d._attrs
@@ -65,7 +67,7 @@ class TestXmlTramp(unittest.TestCase):
         assert len(d) == len(d._dir)
         assert len(d[1:]) == len(d._dir) - 1
         
-        self.assertEqual(len(d['bar']), 2)
+        self.assertEqual(len(d['bar':]), 2)
         d.bar = 'baz'
         assert len(d.bar) == 3
         assert d.bar._name == 'bar'
