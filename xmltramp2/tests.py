@@ -26,20 +26,20 @@ class TestXmlTramp(unittest.TestCase):
         assert str(parse('<doc>\xcf\x80</doc>')) == '\xcf\x80'
     
     def test_created_element(self):
-        d = Element('foo', attrs={'foo': 'bar'}, children=['hit with a', Element('bar'), Element('bar')])
-        try:
-            d._doesnotexist
+        d = Element(
+            'foo', 
+            attrs={'foo': 'bar'}, 
+            children=['hit with a', Element('bar'), Element('bar')]
+        )
+        if d._doesnotexist or d.doesnotexist:
             raise Exception("Expected Error but found success. Damn.")
-        except AttributeError:
-            pass
-        assert d['bar']._name == 'bar'
-        try:
-            d.doesnotexist
-            raise Exception("Expected Error but found success. Damn.")
-        except AttributeError:
-            pass
         
-        assert hasattr(d, 'bar') == True
+        #assert hasattr(d, 'bar') == True
+        # Now check for bar attribute in d, and the name of it.
+        self.assertTrue(hasattr(d, 'bar'))
+        self.assertEqual(d.bar._name, 'bar')
+        #assert d['bar']._name == 'bar'
+
         assert d('foo') == 'bar'
         d(silly='yes')
         assert d('silly') == 'yes'
@@ -114,7 +114,7 @@ class TestXmlTramp(unittest.TestCase):
         api_url = 'http://vimeo.com/api/v2/video/67325705.xml'
         video_data = urlopen(api_url).read()
         parse(video_data)
-        assert repr(video_data) == "foo" 
+        self.assertEqual(repr(video_data), "foo")
 
 if __name__ == '__main__': 
     unittest.main()
