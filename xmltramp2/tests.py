@@ -58,11 +58,13 @@ class TestXmlTramp(unittest.TestCase):
         assert len(d['bar']) == 3
         assert d['bar']._name == 'bar'
 
-        d = Element('foo')
-
+        #        d = Element('foo')
+    def test_namespaces(self):
         doc = Namespace("http://example.org/bar")
         bbc = Namespace("http://example.org/bbc")
         dc = Namespace("http://purl.org/dc/elements/1.1/")
+    
+    def test_repr(self):
         d = parse("""<doc version="2.7182818284590451"
         xmlns="http://example.org/bar"
         xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -72,7 +74,6 @@ class TestXmlTramp(unittest.TestCase):
             <dc:creator>John Palfrey</dc:creator>
             <bbc:show bbc:station="4">Buffy</bbc:show>
         </doc>""")
-
         assert repr(d) == '<doc version="2.7182818284590451">...</doc>'
         # I supect py3 does not see equality in type below.
         #assert d.__repr__(1) == '<doc xmlns:bbc="http://example.org/bbc" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://example.org/bar" version="2.7182818284590451"><author>John Polk and John Palfrey</author><dc:creator>John Polk</dc:creator><dc:creator>John Palfrey</dc:creator><bbc:show bbc:station="4">Buffy</bbc:show></doc>'
@@ -115,3 +116,6 @@ class TestXmlTramp(unittest.TestCase):
         video_data = urlopen(api_url).read()
         parse(video_data)
         assert repr(video_data) == "foo" 
+
+if __name__ == '__main__': 
+    unittest.main()
