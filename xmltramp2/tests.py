@@ -1,3 +1,5 @@
+from urllib.request import urlopen 
+
 from xmltramp import Element, Namespace
 from xmltramp import parse, quote
 
@@ -34,12 +36,10 @@ def unittest():
     assert d[0]._name == "bar"
 
     assert len(d) == len(d._dir)
-
     assert len(d[1:]) == len(d._dir) - 1
-
-    assert len(d['bar':]) == 2
-    d['bar':] = 'baz'
-    assert len(d['bar':]) == 3
+    assert len(d['bar']) == 2
+    d['bar'] = 'baz'
+    assert len(d['bar']) == 3
     assert d['bar']._name == 'bar'
 
     d = Element('foo')
@@ -93,5 +93,11 @@ def unittest():
     assert quote('< dkdkdsd dkd sksdksdfsd fsdfdsf]]> kfdfkg >') == '&lt; dkdkdsd dkd sksdksdfsd fsdfdsf]]&gt; kfdfkg >'
     assert parse('<x a="&lt;"></x>').__repr__(1) == '<x a="&lt;"></x>'
     assert parse('<a xmlns="http://a"><b xmlns="http://b"/></a>').__repr__(1) == '<a xmlns="http://a"><b xmlns="http://b"></b></a>'
+
+    # Testing with a vimeo URL:
+    api_url = 'http://vimeo.com/api/v2/video/67325705.xml'
+    video_data = urlopen(api_url).read()
+    parse(video_data)
+    assert repr(video_data) == "foo" 
 
 if __name__ == '__main__': unittest()
