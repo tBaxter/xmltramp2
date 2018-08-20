@@ -1,6 +1,6 @@
 # xmltramp2
 
-[![Build Status](https://travis-ci.org/tBaxter/xmltramp2.svg?branch=master)](https://travis-ci.org/tBaxter/xmltramp2)
+## Important note: this project has been deprecated. If you'd like to take it over please drop me a line. Otherwise, I suggest you use [a modern, actively supported XML parsing library](https://docs.python-guide.org/scenarios/xml/#untangle). I'm leaving this up only for anyone still using it.
 
 [xmltramp](http://www.aaronsw.com/2002/xmltramp/) was originally created by Aaron Swartz
 for simple-yet-powerful parsing of RSS and other xml files.

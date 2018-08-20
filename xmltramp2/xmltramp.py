@@ -16,6 +16,9 @@ The original credits will be be maintained above. Thank you, Aaron Swartz, for a
 import six
 import sys
 
+from io import StringIO
+
+
 def isstr(f):
     return isinstance(f, type('')) or isinstance(f, type(u''))
 
@@ -120,23 +123,6 @@ class Element:
 
         out += '</'+qname(self._name, inprefixes)+'>'
         return out
-
-    def __unicode__(self):
-        text = ''
-        for x in self._dir:
-            if sys.version_info[0] >= 3:
-                u = str(x)
-            else:
-                u = unicode(x)
-            text += u
-        return ' '.join(text.split())
-
-    def __str__(self):
-        u = self.__unicode__()
-        if sys.version_info[0] >= 3:
-            return u
-        else:
-            return u.encode('utf-8')
 
     def __getattr__(self, n):
         if n[0] == '_':
@@ -302,7 +288,7 @@ def seed(fileobj):
 
 
 def parse(text):
-    return seed(six.StringIO(text))
+    return seed(StringIO(text))
 
 
 def load(url):
